@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	
+	char tecken;
+	string namn;
+	double PersonPott =0;
+
+	
+	cout << "Välkommen!" << endl;
+	cout << "Var snäll och skriv in ditt namn: ";
+	cin >> namn, cout << "Hejsan " << namn << endl;
+
+	cout << "Din nuvarande PersonPott ligger på: " << PersonPott << endl;
+
+
+	cout << "Vill du sätta in pengar på kontot?(j/n): ";
+	cin >> tecken;
+
+
+
+	if ((tecken == 'j')||(tecken == 'J'))
+	{
+		cout << "Var Vänlig och skriv in det belopp som du vill sätta in: ";
+		cin >> PersonPott;
+
+		cout << "Du har nu " << PersonPott << "kr på ditt konto" << endl;
+	}
+
+
+	else
+
+		cout << "Okej, ditt nuvarande belopp är" << PersonPott  << endl;
+
+	return PersonPott;
+}
+
+
