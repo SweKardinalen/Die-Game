@@ -1,0 +1,3 @@
+#include <ctime>; 
+srand(time(0));                           // Använd endast en gång
+int slumptal = rand() % 6 + 1;  
