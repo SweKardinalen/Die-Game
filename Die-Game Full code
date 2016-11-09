@@ -91,16 +91,16 @@ int main()
 			
 
 　
-　
+//definerar spelpot till 0
 		double spel_pot = 0;
 
-		//indikerar att ifall man väljer j/J så händer detta
+//indikerar att ifall man väljer j/J så händer detta
 
 		if ((tecken == 'j') || (tecken == 'J'))
 
 		{
 
-			//Visar vilka bets som är inne och vad personen har i sin egna pott
+//Visar vilka bets som är inne och vad personen har i sin egna pott
 			int diff = 500;
 			diff = diff - bet1;
 			int bet2 = rand() %  (diff + bet1); 			// Genererar ett random insättning mellan 100-500
@@ -110,23 +110,23 @@ int main()
 			
 			cout << namn << "s " << "insättning: " << bet1 << endl << endl;
 			
-			cout << "Datorns insättning: " << bet2 << endl << endl;
+			cout << "CPUns insättning: " << bet2 << endl << endl;
 
-			summa = PersonPott - bet1;
-			cout << "Din personliga pott ligger på: " << summa << endl;
+			PersonPott -= bet1;
+			cout << "Din personliga pott ligger på: " << PersonPott << endl;
 
-			// räknar ut spelpotten
+// räknar ut spelpotten
 
 			spel_pot = bet1 + bet2;
 
 　
-			cout << "Den totala spel potten ligger på: " << spel_pot << endl;
+			cout << "Den totala spelpotten ligger på: " << spel_pot << endl;
 
-			//pausar systemet för att tydligare visa spelstart
+//pausar systemet för att tydligare visa spelstart
 			system("pause");
 
 		}
-		//Spel start
+//Spel start
 		cout << endl << endl << endl << "TÄRNINGARNA  SLÅS!" << endl << endl << endl;
 		
 		slumptal1 = rand() % 6 + 1;
@@ -139,11 +139,11 @@ int main()
 
 		system("pause");
 
-		cout << "Datorns tärning är: " << slumptal2 << endl << endl;
+		cout << "CPUns tärning är: " << slumptal2 << endl << endl;
 
 		system("pause");
 
-		// Ifall spelarens tal är större
+// Ifall spelarens tal är större
 		if (slumptal1 > slumptal2)
 		{
 			cout << namn <<" vann denna rond!" << endl;
@@ -152,7 +152,7 @@ int main()
 		}
 
 　
-		//Ifall det blir oavgjort, skall fyllas i med bet1 + personpott
+//Ifall det blir oavgjort, skall fyllas i med bet1 + personpott
 		else if (slumptal1 == slumptal2)
 		{
 			cout << "Ingen vinnare" << endl;
@@ -163,16 +163,16 @@ int main()
 
 		}
 
-		// Ifall datorns tal är större
+// Ifall CPUns tal är större
 		else
 		{
-			cout << "Datorn är vann denna rond" << endl;
+			cout << "CPUn är vann denna rond" << endl;
 
 			spel_pot -= spel_pot;
 			Cvinst += 1;
 
 		}
-	
+//Räknar ut ifall användare har 3 vunna ronder
 		if (Avinst == 3)
 		{
 			system("cls");
@@ -180,11 +180,12 @@ int main()
 			cout << namn << " vann matchen!" << endl;
 			break;
 		}
+//räknar ut ifall CPU har 3 vunna ronder
 		else if (Cvinst == 3)
 		{
 			system("cls");
 
-			cout <<"Datorn Vann matchen, bättre lycka nästa gång!" << endl;
+			cout <<"CPUn Vann matchen, bättre lycka nästa gång!" << endl;
 			
 			break;
 		}
