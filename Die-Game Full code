@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <windows.h> 
 using namespace std;
 
 int main()
@@ -14,8 +15,11 @@ int main()
 	int bet1;
 	srand(time(0));
 	
-	int slumptal1 = 0;			// Genererar ett random tärningsslag
-	int slumptal2 = 0;			//för deltagare & cpu
+	int slumptal1 = 0;			// Genererar ett random tärningsslag för deltagare & cpu
+	int slumptal2 = 0;	
+	int slumptal3 = 0;
+	int slumptal4 = 0;
+
 	double summa; //Gammal uträknings funtion
 	int oavgjort; //Gammal uträknings funtion
 	int Avinst = 0;
@@ -53,7 +57,7 @@ int main()
 			{
 				cout << "Du har nu " << PersonPott << "kr på ditt konto" << endl;
 
-				system("pause");
+				Sleep(1000);
 				system("cls");
 			}
 			
@@ -63,23 +67,30 @@ int main()
 		else
 		{
 			cout << "Okej, ditt nuvarande belopp är " << PersonPott << endl;
+			
+			cout << "Var Vänlig och skriv in det belopp som du vill sätta in: ";
+			cin >> PersonPott;
+			
+
 		}
 	
 		cout << "Vill du starta spelet? (j/n) ";
 		cin >> tecken;
-		//LOOP för att köra flera gånger
+		//LOOP för att köra till flera 
 		while (true)
 		{
 
 　
 			if ((tecken == 'j') || (tecken == 'J'))
 			{
-				// Rond startar
+// Rond startar
 				cout << endl << endl << endl;
-				cout << "ROND STARTAR" << endl;
-				cout << endl << endl << endl;
-
-				// insättnings funktionen
+				cout << "##########################" << endl;
+				cout << "#######ROND STARTAR#######" << endl;
+				cout << "##########################" << endl;
+				cout << "########BÄST AV 3#########" << endl;
+				cout << "##########################" << endl;
+// insättnings funktionen
 
 　
 				cout << "Var vändlig och välj insättning (100 - 500kr): ";
@@ -93,7 +104,7 @@ int main()
 					cin >> tecken;
 					system("cls");
 				}
-			
+// Förklarar ifall talet är felaktigt
 				else
 
 				{
@@ -136,14 +147,14 @@ int main()
 			cout << "CPUns insättning: " << bet2 << endl << endl;
 
 			PersonPott -= bet1;
-			cout << "Din personliga pott ligger på: " << PersonPott << endl;
+			cout << "Din personliga pott ligger på: " << PersonPott << endl << endl;
 
 // räknar ut spelpotten
 
 			spel_pot = bet1 + bet2;
 
 　
-			cout << "Den totala spelpotten ligger på: " << spel_pot << endl;
+			cout << "Den totala spelpotten ligger på: " << spel_pot << endl << endl;
 
 //pausar systemet för att tydligare visa spelstart
 			system("pause");
@@ -154,20 +165,22 @@ int main()
 		
 		slumptal1 = rand() % 6 + 1;
 		slumptal2 = rand() % 6 + 1;
+		slumptal3 = rand() % 6 + 1;
+		slumptal4 = rand() % 6 + 1;
 
-		system("pause");
+		Sleep(1000);
 
 　
-		cout << namn << "s tärning är: " << slumptal1 << endl << endl;
+		cout << namn << "s tärningar är: " << slumptal1 << " och " << slumptal2 << endl << endl;
 
-		system("pause");
+		Sleep(1000);
 
-		cout << "CPUns tärning är: " << slumptal2 << endl << endl;
+		cout << "CPUns tärningar är: " << slumptal3 << " och " << slumptal4 << endl << endl;
 
-		system("pause");
+		Sleep(1000);
 
 // Ifall spelarens tal är större
-		if (slumptal1 > slumptal2)
+		if ((slumptal1 > slumptal3)|| (slumptal2 > slumptal4)||(slumptal1 > slumptal4)||(slumptal2 > slumptal3))
 		{
 			cout <<endl << namn <<" vann denna rond!" << endl;
 			PersonPott += spel_pot;
@@ -177,7 +190,7 @@ int main()
 
 　
 //Ifall det blir oavgjort, skall fyllas i med bet1 + personpott
-		else if (slumptal1 == slumptal2)
+		else if ((slumptal1 == slumptal4)||(slumptal2 == slumptal3)||(slumptal1 == slumptal3)||(slumptal2 == slumptal4))
 		{
 			cout << "Ingen vinnare" << endl;
 
@@ -197,7 +210,7 @@ int main()
 
 		}
 //Räknar ut ifall användare har 3 vunna ronder
-		if (Avinst == 3)
+		if (Avinst == 2)
 		{
 			system("cls");
 
@@ -206,7 +219,7 @@ int main()
 			break;
 		}
 //räknar ut ifall CPU har 3 vunna ronder
-		else if (Cvinst == 3)
+		else if (Cvinst == 2)
 		{
 			system("cls");
 
