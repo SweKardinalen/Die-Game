@@ -1,0 +1,201 @@
+#include <iostream>
+#include <ctime>
+#include <string>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "");			//Svenska bokstäver
+
+　
+	string namn;
+	char tecken;
+	double PersonPott = 0;
+	int bet1;
+	srand(time(0));
+	
+	int slumptal1 = 0;			// Genererar ett random träningsslag för deltagare & dator
+	int slumptal2 = 0;
+	double summa;
+	int oavgjort;
+	int Avinst = 0;
+	int Cvinst = 0;
+
+	//Välkomst meddelande
+	cout << endl << endl << endl;
+	cout << "Välkommen!" << endl;
+	cout << endl << endl << endl;
+	//Skriv in namn
+	cout << "Var snäll och skriv in ditt namn: ";
+
+	cin >> namn;
+
+	system("cls");   //Clear screen
+
+	cout << endl << "Hejsan " << namn << endl << endl;
+
+	cout << "Din nuvarande PersonPott ligger på: " << PersonPott << endl;
+	
+	
+		//Ger val om man vill sätta in pengar på kontot
+		cout << "Vill du sätta in pengar på kontot?(j/n): ";
+		cin >> tecken;
+
+　
+		if ((tecken == 'j') || (tecken == 'J'))
+		{
+
+　
+			cout << "Var Vänlig och skriv in det belopp som du vill sätta in: ";
+			cin >> PersonPott;
+
+			cout << "Du har nu " << PersonPott << "kr på ditt konto" << endl;
+
+			system("cls");
+		}
+
+		//Hör till det ovanför
+		else
+		{
+			cout << "Okej, ditt nuvarande belopp är " << PersonPott << endl;
+		}
+	
+		cout << "Vill du starta spelet? (j/n) ";
+		cin >> tecken;
+		//LOOP för att köra flera gånger
+		while (true)
+		{
+
+　
+			if ((tecken == 'j') || (tecken == 'J'))
+			{
+				// Rond startar
+				cout << endl << endl << endl;
+				cout << "ROND STARTAR" << endl;
+				cout << endl << endl << endl;
+
+				// insättnings funktionen
+
+　
+				cout << "Var vändlig och välj insättning (100 - 500kr): ";
+				cin >> bet1;
+
+				system("cls"); // clear screen
+
+				cout << "Du valde att sätta in: " << bet1 << ". Är detta korrekt belopp? (j/n)";
+				cin >> tecken;
+
+			}
+
+　
+			
+
+　
+　
+		double spel_pot = 0;
+
+		//indikerar att ifall man väljer j/J så händer detta
+
+		if ((tecken == 'j') || (tecken == 'J'))
+
+		{
+
+			//Visar vilka bets som är inne och vad personen har i sin egna pott
+			int diff = 500;
+			diff = diff - bet1;
+			int bet2 = rand() %  (diff + bet1); 			// Genererar ett random insättning mellan 100-500
+			cout << "##############################" << endl;
+			cout << "#### Bets som är inne är: ####" << endl;
+			cout << "##############################" << endl <<endl;
+			
+			cout << namn << "s " << "insättning: " << bet1 << endl << endl;
+			
+			cout << "Datorns insättning: " << bet2 << endl << endl;
+
+			summa = PersonPott - bet1;
+			cout << "Din personliga pott ligger på: " << summa << endl;
+
+			// räknar ut spelpotten
+
+			spel_pot = bet1 + bet2;
+
+　
+			cout << "Den totala spel potten ligger på: " << spel_pot << endl;
+
+			//pausar systemet för att tydligare visa spelstart
+			system("pause");
+
+		}
+		//Spel start
+		cout << endl << endl << endl << "TÄRNINGARNA  SLÅS!" << endl << endl << endl;
+		
+		slumptal1 = rand() % 6 + 1;
+		slumptal2 = rand() % 6 + 1;
+
+		system("pause");
+
+　
+		cout << namn << "s tärning är: " << slumptal1 << endl << endl;
+
+		system("pause");
+
+		cout << "Datorns tärning är: " << slumptal2 << endl << endl;
+
+		system("pause");
+
+		// Ifall spelarens tal är större
+		if (slumptal1 > slumptal2)
+		{
+			cout << namn <<" vann denna rond!" << endl;
+			PersonPott += spel_pot;
+			Avinst  += 1;
+		}
+
+　
+		//Ifall det blir oavgjort, skall fyllas i med bet1 + personpott
+		else if (slumptal1 == slumptal2)
+		{
+			cout << "Ingen vinnare" << endl;
+
+			PersonPott += bet1;
+
+			cout << "Din personliga pott ligger återligen på: " << PersonPott << endl;
+
+		}
+
+		// Ifall datorns tal är större
+		else
+		{
+			cout << "Datorn är vann denna rond" << endl;
+
+			spel_pot -= spel_pot;
+			Cvinst += 1;
+
+		}
+	
+		if (Avinst == 3)
+		{
+			system("cls");
+
+			cout << namn << " vann matchen!" << endl;
+			break;
+		}
+		else if (Cvinst == 3)
+		{
+			system("cls");
+
+			cout <<"Datorn Vann matchen, bättre lycka nästa gång!" << endl;
+			
+			break;
+		}
+
+　
+　
+　
+}
+
+　
+　
+　
+　
+}
