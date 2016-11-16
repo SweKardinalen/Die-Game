@@ -8,13 +8,11 @@ int main()
 {
 	setlocale(LC_ALL, "");			//Skapar Svenska bokstäver i terminalen
 
-　
+	srand(time(0));
 	string namn;
 	char tecken;
 	double PersonPott = 0;
 	int bet1;
-	srand(time(0));
-
 	int slumptal1 = 0;			// Genererar ett random tärningsslag för deltagare & cpu
 	int slumptal2 = 0;
 	int slumptal3 = 0;
@@ -52,7 +50,7 @@ int main()
 		cout << "Var Vänlig och skriv in det belopp som du vill sätta in: (Max 5000kr) ";
 		cin >> PersonPott;
 
-		if (PersonPott < 5001)
+		if ((PersonPott < 5001)&&(PersonPott>100))
 		{
 			cout << "Du har nu " << PersonPott << "kr på ditt konto" << endl;
 
@@ -304,6 +302,7 @@ int main()
 				cout << "Din Personliga pott slutade på: " << PersonPott << endl;
 
 				cout << "________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶" << endl;
+
 				cout << "________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶" << endl;
 				cout << "___¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶" << endl;
 				cout << "_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶" << endl;
