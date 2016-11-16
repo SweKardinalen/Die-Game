@@ -108,7 +108,7 @@ int main()
 				// insättnings funktionen
 				while (true)
 				{
-
+					cout << "Din personliga pott ligger på: " << PersonPott << endl;
 					cout << "Var vändlig och välj insättning (100kr, 300kr, 500kr): ";
 					cin >> bet1;
 
