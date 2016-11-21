@@ -1,0 +1,394 @@
+#include <iostream>
+#include <ctime>
+#include <string>
+#include <windows.h> 
+using namespace std;
+
+int main()
+{
+//Skapar Svenska bokstäver i terminalen
+	setlocale(LC_ALL, "");			
+
+	srand(time(0));
+	string namn;
+	char tecken;
+	double PersonPott = 0;
+	int bet1;
+// Genererar ett random tärningsslag för deltagare & cpu
+	int slumptal1 = 0;			
+	int slumptal2 = 0;
+	int slumptal3 = 0;
+	int slumptal4 = 0;
+
+	double summa; //Gammal uträknings funtion
+	int oavgjort; //Gammal uträknings funtion
+
+
+//Välkomst meddelande
+	cout << endl << endl << endl;
+	cout << "Välkommen!" << endl;
+	cout << endl << endl << endl;
+//Skriv in namn
+	cout << "Var snäll och skriv in ditt namn: ";
+
+	cin >> namn;
+
+	system("cls");   //Clear screen
+
+	cout << endl << "Hejsan " << namn << endl << endl;
+
+	cout << "Din nuvarande PersonPott ligger på: " << PersonPott << endl;
+
+
+//Ger val om man vill sätta in pengar på kontot
+	cout << "Vill du sätta in pengar på kontot?(j/n): ";
+	cin >> tecken;
+
+
+	if ((tecken == 'j') || (tecken == 'J'))
+	{
+
+
+		cout << "Var Vänlig och skriv in det belopp som du vill sätta in: (Max 5000kr) ";
+		cin >> PersonPott;
+
+//så att beloppet som sätts in är mellan 100-5000kr
+
+		if ((PersonPott < 5001) && (PersonPott > 100))
+		{
+			cout << "Du har nu " << PersonPott << "kr på ditt konto" << endl;
+
+			Sleep(1000);
+
+			system("cls");
+		}
+
+	}
+
+//Hör till det ovanför, felmeddelande vid fel belopp inmatat och get användaren ett nytt försök
+	else
+	{
+		cout << "Okej, ditt nuvarande belopp är " << PersonPott << "." << " Du kommer inte kunna spela utan en pott på över 100kr" << endl;
+
+		cout << "Var Vänlig och skriv in det belopp som du vill sätta in: ";
+		cin >> PersonPott;
+
+
+	}
+// Skapar en loop så man kan fortsätta spela tills man inte vill längre eller pengarna tar slut
+	while (true)
+	{
+
+
+		cout << "Vill du starta ett nytt spel? (j/n): ";
+		cin >> tecken;
+		system("cls");
+
+		int Avinst = 0;		//Skapar antal vinster för skapa slut resultat
+		int Cvinst = 0;
+
+		if (PersonPott < 200)
+		{
+			cout << "Okej, ditt nuvarande belopp är " << PersonPott << "." << " Du kommer inte kunna spela utan en pott på över 100kr" << endl;
+
+			cout << "Var Vänlig och skriv in det belopp som du vill sätta in: ";
+			cin >> PersonPott;
+		}
+
+//LOOP för att köra tills någon har 2/3 vinster
+		while (true)
+		{
+
+
+			if ((tecken == 'j') || (tecken == 'J'))
+			{
+// Rond startar
+
+				cout << "##########################" << endl;
+				cout << "#######ROND STARTAR#######" << endl;
+				cout << "##########################" << endl;
+				cout << "########BÄST AV 3#########" << endl;
+				cout << "##########################" << endl;
+// insättnings funktionen
+				while (true)
+				{
+					cout << "Din personliga pott ligger på: " << PersonPott << endl;
+					cout << "Var vändlig och välj insättning (100kr, 300kr, 500kr): ";
+					cin >> bet1;
+
+					if ((bet1 == 100) || (bet1 == 300) || (bet1 == 500))
+					{
+						system("cls"); // clear screen
+
+						if (bet1 > PersonPott)
+						{
+
+							cout << "Du har för lite pengar på ditt konto." << endl;
+							cout << "Var vändlig och välj insättning (100kr, 300kr, 500kr): ";
+							cin >> bet1;
+
+						}
+
+
+						cout << "Du valde att sätta in: " << bet1 << ". Är detta korrekt belopp? (j/n)";
+						cin >> tecken;
+						system("cls");
+
+
+
+						break;
+
+					}
+// Förklarar ifall talet är felaktigt
+					else
+
+					{
+						cout << "Talet som är inmatat är felaktigt" << endl;
+
+					}
+
+				}
+
+			}
+
+			else
+			{
+				cout << "Din nuvarande PersonPott slutade på: " << PersonPott << endl;
+				cout << "Tack för att du spelade & Välkommen åter " << namn << endl;
+
+				exit(0);
+
+
+				break;
+
+			}
+
+
+
+
+//definerar spelpot till 0
+			double spel_pot = 0;
+
+//indikerar att ifall man väljer j/J & n/N så händer detta
+			if ((tecken == 'n') || (tecken == 'N'))
+			{
+
+				cout << "Din personliga pott ligger på: " << PersonPott << endl;
+				cout << "Var vändlig och välj insättning (100kr, 300kr, 500kr): ";
+				cin >> bet1;
+
+				if ((bet1 == 100) || (bet1 == 300) || (bet1 == 500))
+				{
+					system("cls"); // clear screen
+
+					if (bet1 > PersonPott) //check för att kolla ifall man har råd att betta
+					{
+
+						cout << "Du har för lite pengar på ditt konto." << endl;
+						cout << "Var vändlig och välj insättning (100kr, 300kr, 500kr): ";
+						cin >> bet1;
+
+					}
+
+
+					cout << "Du valde att sätta in: " << bet1 << ". Är detta korrekt belopp? (j/n)";
+					cin >> tecken;
+					system("cls");
+
+
+
+
+
+				}
+
+				else if ((tecken == 'j') || (tecken == 'J'))
+
+				{
+
+				}
+			}
+
+//Visar vilka bets som är inne och vad personen har i sin egna pott
+
+				int bet2 = rand() % ((500 - bet1 + 1) + bet1); 			// Genererar ett random insättning för datorn 
+
+// svarar ja till ifall betten är korrekt efter alla checks och visar betsen som är inne
+			if ((tecken == 'j') || (tecken == 'J'))
+			{
+
+				cout << "##############################" << endl;
+				cout << "#### Bets som är inne är: ####" << endl;
+				cout << "##############################" << endl << endl;
+
+				cout << namn << "s " << "insättning: " << bet1 << endl << endl;
+
+				Sleep(1000);
+
+				cout << "CPUns insättning: " << bet2 << endl << endl;
+
+				Sleep(1000);
+
+				PersonPott -= bet1;
+				cout << "Din personliga pott ligger på: " << PersonPott << endl << endl;
+
+					// räknar ut spelpotten
+
+					spel_pot = bet1 + bet2;
+
+
+					cout << "Den totala spelpotten ligger på: " << spel_pot << endl << endl;
+
+					//pausar systemet för att tydligare visa spelstart
+					system("pause");
+
+
+				}
+
+
+
+				//Spel start
+				cout << endl << endl << endl << "TÄRNINGARNA  SLÅS!" << endl << endl << endl;
+
+				slumptal1 = rand() % 6 + 1;
+				slumptal2 = rand() % 6 + 1;
+				slumptal3 = rand() % 6 + 1;
+				slumptal4 = rand() % 6 + 1;
+
+				Sleep(1000);
+
+
+				cout << namn << "s tärningar är: " << slumptal1 << " och " << slumptal2 << endl << endl;
+
+				Sleep(1000);
+
+				cout << "CPUns tärningar är: " << slumptal3 << " och " << slumptal4 << endl << endl;
+
+				system("pause");
+
+				// Skapar en fungerande if & else if sats. userbig/cpubig deklarerar det största talet för vadera.
+				int userBig = 0;
+				int cpuBig = 0;
+
+
+				if (slumptal1 > slumptal2)
+				{
+					userBig = slumptal1;
+				}
+				else
+				{
+					userBig = slumptal2;
+				}
+				if (slumptal3 > slumptal4)
+				{
+					cpuBig = slumptal3;
+				}
+				else
+				{
+					cpuBig = slumptal4;
+				}
+
+
+				// Ifall spelarens tal är större
+				if (userBig > cpuBig)
+				{
+
+					cout << endl << namn << " vann denna rond!" << endl;
+					cout << endl << namn << " vann " << spel_pot << "kr" << endl << endl;
+					PersonPott += spel_pot;
+					cout << "Din personliga pott ligger nu på: " << PersonPott << endl << endl;
+					Avinst += 1;
+					system("pause");
+					system("cls");
+
+				}
+
+
+				//Ifall det blir oavgjort, skall fyllas i med bet1 + personpott
+				else if (userBig == cpuBig)
+				{
+					cout << "Ingen vinnare" << endl;
+
+					PersonPott += bet1;
+
+					cout << "Din personliga pott ligger återligen på: " << PersonPott << endl;
+					system("pause");
+					system("cls");
+				}
+
+				// Ifall CPUns tal är större
+				else
+				{
+					cout << endl << "CPUn är vann denna rond" << endl << endl;
+
+					spel_pot -= spel_pot;
+					Cvinst += 1;
+					system("pause");
+					system("cls");
+				}
+
+
+
+
+
+				//Räknar ut ifall användare har 3 vunna ronder
+				if (Avinst == 2)
+				{
+					system("cls");
+
+					cout << namn << " vann matchen!" << endl;
+					cout << "Din Personliga pott slutade på: " << PersonPott << endl;
+
+					cout << "    ¤    " << endl;
+					cout << "  #####  " << endl;
+					cout << "#########" << endl;
+					cout << "#########" << endl;
+					cout << " ####### " << endl;
+					cout << "  #####  " << endl;
+					cout << "   ###   " << endl;
+					cout << "   ###   " << endl;
+					cout << "  #####  " << endl;
+					cout << " ####### " << endl;
+
+
+
+
+					break;
+				}
+				//räknar ut ifall CPU har 3 vunna ronder
+				else if (Cvinst == 2)
+				{
+					system("cls");
+
+					cout << "CPUn Vann matchen, bättre lycka nästa gång!" << endl;
+
+
+					cout << "________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶__________" << endl;
+					cout << "______¶¶¶¶¶¶_____________¶¶¶¶¶¶________" << endl;
+					cout << "_____¶¶¶¶¶_________________¶¶¶¶¶¶______" << endl;
+					cout << "____¶¶¶¶_____________________¶¶¶¶¶_____" << endl;
+					cout << "___¶¶¶¶_______________________¶¶¶¶¶____" << endl;
+					cout << "__¶¶¶¶_____¶¶¶¶_______¶¶¶¶______¶¶¶____" << endl;
+					cout << "__¶¶¶_____¶¶¶¶¶¶_____¶¶¶¶¶¶_____¶¶¶¶___" << endl;
+					cout << "_¶¶¶¶_____¶¶¶¶¶¶_____¶¶¶¶¶¶______¶¶¶___" << endl;
+					cout << "_¶¶¶_______¶¶¶¶_______¶¶¶¶_______¶¶¶¶__" << endl;
+					cout << "_¶¶¶______________________________¶¶¶__" << endl;
+					cout << "_¶¶¶______________________________¶¶¶__" << endl;
+					cout << "_¶¶¶______________________________¶¶¶__" << endl;
+					cout << "_¶¶¶____________¶¶¶¶¶____________¶¶¶¶__" << endl;
+					cout << "_¶¶¶¶________¶¶¶¶¶¶¶¶¶¶¶_________¶¶¶___" << endl;
+					cout << "__¶¶¶______¶¶¶¶¶_____¶¶¶¶¶______¶¶¶¶___" << endl;
+					cout << "__¶¶¶¶____¶¶¶___________¶¶¶____¶¶¶¶____" << endl;
+					cout << "___¶¶¶¶___¶¶_____________¶¶___¶¶¶¶_____" << endl;
+					cout << "____¶¶¶¶____________________¶¶¶¶¶______" << endl;
+					cout << "_____¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶_______" << endl;
+					cout << "_______¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶_________" << endl;
+
+
+
+
+					break;
+				}
+
+			}
+		}
+	}
